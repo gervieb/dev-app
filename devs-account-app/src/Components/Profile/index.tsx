@@ -1,12 +1,9 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import cx from "classnames";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store";
-import { logout } from '../../Reducers/Auth';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../store';
-import { setUser } from '../../Reducers/Auth';
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, AppDispatch } from "../../store";
+import { logout, setUser } from '../../Reducers/Auth';
 
 const Schema = Yup.object().shape({
     first_name: Yup.string().required("Required"),
@@ -45,7 +42,6 @@ const Profile = () => {
         catch (e) {
             console.log(e);
         }
-
     }
 
     return (
