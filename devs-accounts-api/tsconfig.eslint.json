@@ -1,0 +1,4 @@
+{
+    // extend your base config to share compilerOptions, etc
+    "extends": "./tsconfig.json",
+}

@@ -1,0 +1,8 @@
+.vercel
+.nyc_output
+coverage
+unit_test_coverage
+integration_test_coverage
+node_modules
+test/build
+build
