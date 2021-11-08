@@ -43,8 +43,15 @@ const Profile = () => {
 
     return (
         <div>
+            <div className="mt-5 flex justify-end">
+                <button
+                    className={cx("btn btn-primary")}
+                    onClick={logoutPage}
+                >
+                    LOGOUT
+                </button>
+            </div>
             <h2>User Profile</h2>
-            <button onClick={logoutPage}>logout</button>
             <form onSubmit={formik.handleSubmit}>
                 <div className="mt-5">
                     <label className="label">
