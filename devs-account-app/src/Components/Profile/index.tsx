@@ -37,8 +37,15 @@ const Profile = () => {
         }
     });
 
-    const logoutPage = () => {
-        dispatch(logout())
+    const logoutPage = async () => {
+        try {
+            await logout();
+            dispatch(logout())
+        }
+        catch (e) {
+            console.log(e);
+        }
+
     }
 
     return (

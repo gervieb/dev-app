@@ -39,7 +39,6 @@ const BasicAuth = () => {
     });
 
 
-
     return (
         <form onSubmit={formik.handleSubmit}>
             <div>
