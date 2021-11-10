@@ -4,6 +4,7 @@ import cx from "classnames";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../../store";
 import { logout, setUser } from '../../Reducers/Auth';
+import { putRequest } from "../../Services/Request";
 
 const Schema = Yup.object().shape({
     first_name: Yup.string().required("Required"),
@@ -24,13 +25,24 @@ const Profile = () => {
         validationSchema: Schema,
         onSubmit: async (
             values,
-            { setSubmitting }
+            { setSubmitting, setStatus }
         ) => {
+            const profile: any = { ...userData, profile: values };
+
             if (values) {
-                const profile: any = { ...userData, profile: values };
                 dispatch(setUser(profile));
             }
-            setSubmitting(false)
+
+            try {
+                const res: any = await putRequest(`${process.env.REACT_APP_API_URL}/auth/update`, profile);
+                res.status === 200 && setStatus('profile succesfully updated!');
+            }
+            catch (e) {
+                console.log(e);
+            }
+            finally {
+                setSubmitting(false);
+            }
         }
     });
 
@@ -111,6 +123,9 @@ const Profile = () => {
                         SAVE CHANGES
                     </button>
                 </div>
+                {formik.status && (
+                    <div className="text-green-500">{formik.status}</div>
+                )}
             </form>
         </div>
     )
