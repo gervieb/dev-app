@@ -54,6 +54,25 @@ export const logout = async (request: Request) => {
     }
 };
 
+export const update = async (request: Request) => {
+    try {
+        const user: any = request.user;
+        User.findByIdAndUpdate(
+            user._id, 
+            { $set : { profile: request.body.profile }},
+            { useFindAndModify: false },
+            (err, user) => {
+                 if(err) {
+                     console.log(err);
+                 }
+                 request.responseData = user;
+               }
+            );
+    } catch (error) {
+        throw error;
+    }
+};
+
 export const refresh = async (request: Request) => {
     try {
         const refreshToken = request.body.refreshToken;
