@@ -100,7 +100,7 @@ const postRequest = (url: string, body: any) => {
     return axios.post(url, body, getHeader());
 };
 
-const putRequest = (url: string, body: any) => {
+export const putRequest = (url: string, body: any) => {
     return axios.put(`${url}`, body, getHeader());
 };
 
